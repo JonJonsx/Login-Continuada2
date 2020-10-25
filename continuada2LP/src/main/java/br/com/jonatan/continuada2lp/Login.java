@@ -7,7 +7,9 @@ package br.com.jonatan.continuada2lp;
 
 import java.util.List;
 import javax.swing.BorderFactory;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -15,16 +17,17 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
  */
 public class Login extends javax.swing.JFrame {
 
-    Conexao conecta = new Conexao();
-    private List valores;
     Integer tentativas = 2;
-
-    public List<Usuario> getValores() {
-        return valores;
-    }
+    private JdbcTemplate jdbcTemplate;
 
     void conectarBanco() {
+        BasicDataSource dataSource = new BasicDataSource();
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:file:./usuario");
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
 
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     /**
@@ -175,25 +178,25 @@ jPanel1Layout.setHorizontalGroup(
 
     private void btnLognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLognActionPerformed
         // metodo que efetua conexão com o banco
-        conecta.conectarBanco();
+        conectarBanco();
 
         // instancia a tela dados
         Dados dadosUsuario = new Dados();
 
         String email = tfLogin.getText();
         String senha = pfSenha.getText();
-        List<Usuario> Logar = conecta.getJdbcTemplate().query(
+        List<Usuario> Logar = jdbcTemplate.query(
                 "select * from usuario where email = ? and senha = ?",
                 new BeanPropertyRowMapper(Usuario.class), email, senha);
-        this.valores = Logar;
-        if (Logar.isEmpty()) {
-            tentativas -= 1;
+
+        if (tentativas.equals(0)) {
+            lbMensagem.setText("Sistema Bloqueado - Procure o suporte");
             lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas", tentativas));
+            btnLogn.setEnabled(false);
         } else {
-            if (tentativas == 0) {
-                lbMensagem.setText("Sistema Bloqueado - Procure o suporte");
+            if (Logar.isEmpty()) {
                 lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas", tentativas));
-                btnLogn.setEnabled(false);
+                tentativas -= 1;
             } else {
                 Logar.forEach(logar -> lbMensagem.setText(String.format("Login efetuado com sucesso. Bem vindo(a), %s", logar.getNome())));
 
