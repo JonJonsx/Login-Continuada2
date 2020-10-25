@@ -6,7 +6,7 @@ Nessa tela você informa o seu email, e senha e faz login com o usario, que este
 
 Para ver código da tela(JFrame) de login clique <span style="color:red">[aqui](https://github.com/JonJonsx/Login-Continuada2/blob/main/continuada2LP/src/main/java/br/com/jonatan/continuada2lp/Login.java)</span>
 
-## Clase Usuario
+## Classe Usuario
 Nessa Classe é efetuado os getter e setter de cada atributo do usuario, como nome, email, senha, id e telefone.
 
 Para ver o código da Classe Usuario clique [aqui](https://github.com/JonJonsx/Login-Continuada2/blob/main/continuada2LP/src/main/java/br/com/jonatan/continuada2lp/Usuario.java)
