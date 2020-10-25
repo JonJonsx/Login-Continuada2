@@ -7,9 +7,7 @@ package br.com.jonatan.continuada2lp;
 
 import java.util.List;
 import javax.swing.BorderFactory;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -17,17 +15,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class Login extends javax.swing.JFrame {
 
-    private JdbcTemplate jdbcTemplate;
+    Conexao conecta = new Conexao();
+    private List valores;
     Integer tentativas = 3;
 
-    void conectarBanco() {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:file:./usuario");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
+    public List<Usuario> getValores() {
+        return valores;
+    }
 
-        jdbcTemplate = new JdbcTemplate(dataSource);
+    void conectarBanco() {
+        
     }
 
     /**
@@ -49,12 +46,13 @@ public class Login extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
+        btnLogn = new javax.swing.JButton();
         lbMensagem = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tfLogin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         pfSenha = new javax.swing.JPasswordField();
+        lbMensagem1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -76,17 +74,18 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(236, 240, 241));
         jLabel1.setText("Sign in");
 
-        btnLogin.setBackground(new java.awt.Color(108, 92, 231));
-        btnLogin.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aluno\\Desktop\\Nova pasta\\continuada2LP\\src\\main\\java\\images\\seta.png")); // NOI18N
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnLogn.setBackground(new java.awt.Color(108, 92, 231));
+        btnLogn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aluno\\Desktop\\Nova pasta\\continuada2LP\\src\\main\\java\\images\\seta.png")); // NOI18N
+        btnLogn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnLognActionPerformed(evt);
             }
         });
 
         lbMensagem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         lbMensagem.setForeground(new java.awt.Color(236, 240, 241));
+        lbMensagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(236, 240, 241));
@@ -110,34 +109,38 @@ public class Login extends javax.swing.JFrame {
         pfSenha.getBorder(),
         BorderFactory.createEmptyBorder(5, 15, 5, 15)));
 
+lbMensagem1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+lbMensagem1.setForeground(new java.awt.Color(236, 240, 241));
+lbMensagem1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 jPanel1.setLayout(jPanel1Layout);
 jPanel1Layout.setHorizontalGroup(
     jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
     .addGroup(jPanel1Layout.createSequentialGroup()
-        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(199, 199, 199)
-                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addGap(30, 30, 30)
+        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbMensagem1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addComponent(jLabel1)
+                    .addGap(199, 199, 199)
+                    .addComponent(btnLogn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel3)
+                .addComponent(pfSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)))
         .addGap(0, 30, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(36, 36, 36)
-            .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(28, 28, 28)
+            .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addComponent(lbMensagem1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(10, 10, 10)
             .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,10 +148,10 @@ jPanel1Layout.setHorizontalGroup(
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(66, 66, 66)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(36, 36, 36))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addComponent(jLabel1)
@@ -159,39 +162,50 @@ jPanel1Layout.setHorizontalGroup(
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
     );
 
     pack();
     setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        conectarBanco();
+    private void btnLognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLognActionPerformed
+        // metodo que efetua conexão com o banco
+        conecta.conectarBanco();
+        
+        // instancia a tela dados
+        Dados dadosUsuario = new Dados();
         
         String email = tfLogin.getText();
         String senha = pfSenha.getText();
-        List<Usuario> Logar = jdbcTemplate.query(
+        List<Usuario> Logar = conecta.getJdbcTemplate().query(
                 "select * from usuario where email = ? and senha = ?",
                 new BeanPropertyRowMapper(Usuario.class), email, senha);
-
-        if (tentativas == 0) {
+        valores = Logar;
+        if (tentativas == 1) {
             lbMensagem.setText("Sistema Bloqueado - Procure o suporte");
-            btnLogin.setEnabled(false);
+            lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas",tentativas));
+            btnLogn.setEnabled(false);
         }else{
             if (Logar.isEmpty()) {
                 tentativas -= 1;
-                lbMensagem.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas",tentativas));
+                lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas",tentativas));
             } else {
-                Logar.forEach(logar -> lbMensagem.setText("Bem vindo," + logar.getNome()));
+                Logar.forEach(logar -> lbMensagem.setText(String.format("Login efetuado com sucesso. Bem vindo(a), %s",logar.getNome())));
+                
+                // abre a tela Dados
+                dadosUsuario.setVisible(true);
+                
+                // fecha a tela que esta aberta
+                dispose();
             }
         }
 
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btnLognActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,13 +244,14 @@ jPanel1Layout.setHorizontalGroup(
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogn;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbMensagem;
+    private javax.swing.JLabel lbMensagem1;
     private javax.swing.JPasswordField pfSenha;
     private javax.swing.JTextField tfLogin;
     // End of variables declaration//GEN-END:variables
