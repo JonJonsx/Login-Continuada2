@@ -5,13 +5,34 @@
  */
 package br.com.jonatan.continuada2lp;
 
+import java.util.List;
+
 /**
  *
  * @author Aluno
  */
 public class Dados extends javax.swing.JFrame {
-    public Dados() {
+
+    private List<Usuario> informacaoUsuario;
+
+    public Dados(List<Usuario> Logar) {
+        this.informacaoUsuario = Logar;
         initComponents();
+        setarValores();
+    }
+
+    void setarValores() {
+        this.informacaoUsuario.forEach(informacoes-> {
+            lbNome.setText(informacoes.getNome());
+            lbID.setText(informacoes.getId().toString());
+            lbEmail.setText(informacoes.getEmail());
+            lbTelefone.setText(informacoes.getTelefone());
+            lbSenha.setText(informacoes.getSenha());
+        });
+    }
+
+    private Dados() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

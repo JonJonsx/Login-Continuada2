@@ -180,15 +180,15 @@ jPanel1Layout.setHorizontalGroup(
         // metodo que efetua conexão com o banco
         conectarBanco();
 
-        // instancia a tela dados
-        Dados dadosUsuario = new Dados();
-
         String email = tfLogin.getText();
         String senha = pfSenha.getText();
         List<Usuario> Logar = jdbcTemplate.query(
                 "select * from usuario where email = ? and senha = ?",
                 new BeanPropertyRowMapper(Usuario.class), email, senha);
-
+        
+        
+        
+        
         if (tentativas.equals(0)) {
             lbMensagem.setText("Sistema Bloqueado - Procure o suporte");
             lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas", tentativas));
@@ -199,7 +199,10 @@ jPanel1Layout.setHorizontalGroup(
                 tentativas -= 1;
             } else {
                 Logar.forEach(logar -> lbMensagem.setText(String.format("Login efetuado com sucesso. Bem vindo(a), %s", logar.getNome())));
-
+                
+                // instancia a tela dados
+                Dados dadosUsuario = new Dados(Logar);
+                
                 // abre a tela Dados
                 dadosUsuario.setVisible(true);
 
