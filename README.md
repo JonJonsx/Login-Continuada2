@@ -1,5 +1,5 @@
 # Tela de login da continuada 02 de Linguagem de programação(LP)
-Aqui foi feito um projeto para a continuada dois de LP para
+Aqui foi feito um projeto para a continuada dois de LP, onde possui uma tela de login, que faz Validação dos dados com o Banco de dados H2, após a validação as informações do usuario são mostradas em outra tela.
 
 ## Tela de login
 Nessa tela você informa o seu email, e senha e faz login com o usario, que esteja cadastrado no banco, e se o login estiver incorreto, o sistema mostra quantas tetativas o usuario ainda possui.
