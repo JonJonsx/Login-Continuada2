@@ -17,14 +17,14 @@ public class Login extends javax.swing.JFrame {
 
     Conexao conecta = new Conexao();
     private List valores;
-    Integer tentativas = 3;
+    Integer tentativas = 2;
 
     public List<Usuario> getValores() {
         return valores;
     }
 
     void conectarBanco() {
-        
+
     }
 
     /**
@@ -176,30 +176,30 @@ jPanel1Layout.setHorizontalGroup(
     private void btnLognActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLognActionPerformed
         // metodo que efetua conexão com o banco
         conecta.conectarBanco();
-        
+
         // instancia a tela dados
         Dados dadosUsuario = new Dados();
-        
+
         String email = tfLogin.getText();
         String senha = pfSenha.getText();
         List<Usuario> Logar = conecta.getJdbcTemplate().query(
                 "select * from usuario where email = ? and senha = ?",
                 new BeanPropertyRowMapper(Usuario.class), email, senha);
-        valores = Logar;
-        if (tentativas == 1) {
-            lbMensagem.setText("Sistema Bloqueado - Procure o suporte");
-            lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas",tentativas));
-            btnLogn.setEnabled(false);
-        }else{
-            if (Logar.isEmpty()) {
-                tentativas -= 1;
-                lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas",tentativas));
+        this.valores = Logar;
+        if (Logar.isEmpty()) {
+            tentativas -= 1;
+            lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas", tentativas));
+        } else {
+            if (tentativas == 0) {
+                lbMensagem.setText("Sistema Bloqueado - Procure o suporte");
+                lbMensagem1.setText(String.format("Email e/ou senha errados. Você ainda tem %s tentativas", tentativas));
+                btnLogn.setEnabled(false);
             } else {
-                Logar.forEach(logar -> lbMensagem.setText(String.format("Login efetuado com sucesso. Bem vindo(a), %s",logar.getNome())));
-                
+                Logar.forEach(logar -> lbMensagem.setText(String.format("Login efetuado com sucesso. Bem vindo(a), %s", logar.getNome())));
+
                 // abre a tela Dados
                 dadosUsuario.setVisible(true);
-                
+
                 // fecha a tela que esta aberta
                 dispose();
             }

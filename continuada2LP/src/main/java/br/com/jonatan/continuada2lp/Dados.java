@@ -10,16 +10,11 @@ package br.com.jonatan.continuada2lp;
  * @author Aluno
  */
 public class Dados extends javax.swing.JFrame {
-    Conexao conecta = new Conexao();
+    
     Login login = new Login();
     
     void setarValores(){
-        conecta.conectarBanco();
-        login.getValores().forEach(
-                logar ->lbNome.setText(
-                        String.format("Olá %s",logar.getNome())
-                )
-        );
+        login.getValores().forEach(logar ->lbNome.setText(String.format(logar.getNome())));
     }
     public Dados() {
         initComponents();
