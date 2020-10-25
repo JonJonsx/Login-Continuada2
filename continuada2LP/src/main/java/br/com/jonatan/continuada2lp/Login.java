@@ -28,7 +28,6 @@ public class Login extends javax.swing.JFrame {
         dataSource.setPassword("");
 
         jdbcTemplate = new JdbcTemplate(dataSource);
-
     }
 
     /**
@@ -51,11 +50,11 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnLogn = new javax.swing.JButton();
-        tfSenha = new javax.swing.JTextField();
         lbMensagem = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tfLogin = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        pfSenha = new javax.swing.JPasswordField();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -78,7 +77,6 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Sign in");
 
         btnLogn.setBackground(new java.awt.Color(108, 92, 231));
-        btnLogn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aluno\\Downloads\\Arrow+Right+Direction+Wayfinding-131983793734143401 1.png")); // NOI18N
         btnLogn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,30 +84,30 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        tfSenha.setBackground(new java.awt.Color(51, 51, 51));
-        tfSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfSenha.setForeground(new java.awt.Color(236, 240, 241));
-        tfSenha.setBorder(BorderFactory.createCompoundBorder(
-            tfSenha.getBorder(),
+        lbMensagem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        lbMensagem.setForeground(new java.awt.Color(236, 240, 241));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(236, 240, 241));
+        jLabel2.setText("Login");
+
+        tfLogin.setBackground(new java.awt.Color(51, 51, 51));
+        tfLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tfLogin.setForeground(new java.awt.Color(236, 240, 241));
+        tfLogin.setBorder(BorderFactory.createCompoundBorder(
+            tfLogin.getBorder(),
             BorderFactory.createEmptyBorder(5, 15, 5, 15)));
 
-    lbMensagem.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-    lbMensagem.setForeground(new java.awt.Color(236, 240, 241));
+    jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    jLabel3.setForeground(new java.awt.Color(236, 240, 241));
+    jLabel3.setText("Senha");
 
-    jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-    jLabel2.setForeground(new java.awt.Color(236, 240, 241));
-    jLabel2.setText("Login");
-
-    tfLogin.setBackground(new java.awt.Color(51, 51, 51));
-    tfLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-    tfLogin.setForeground(new java.awt.Color(236, 240, 241));
-    tfLogin.setBorder(BorderFactory.createCompoundBorder(
-        tfLogin.getBorder(),
+    pfSenha.setBackground(new java.awt.Color(51, 51, 51));
+    pfSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+    pfSenha.setForeground(new java.awt.Color(236, 240, 241));
+    pfSenha.setBorder(BorderFactory.createCompoundBorder(
+        pfSenha.getBorder(),
         BorderFactory.createEmptyBorder(5, 15, 5, 15)));
-
-jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-jLabel3.setForeground(new java.awt.Color(236, 240, 241));
-jLabel3.setText("Senha");
 
 javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
 jPanel1.setLayout(jPanel1Layout);
@@ -121,33 +119,32 @@ jPanel1Layout.setHorizontalGroup(
                 .addContainerGap()
                 .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(199, 199, 199)
-                            .addComponent(btnLogn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(199, 199, 199)
+                        .addComponent(btnLogn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))))
-        .addGap(0, 26, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        .addGap(0, 30, Short.MAX_VALUE))
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(36, 36, 36)
             .addComponent(lbMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel2)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(22, 22, 22)
+            .addGap(29, 29, 29)
             .addComponent(jLabel3)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(43, 43, 43)
+            .addComponent(pfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(66, 66, 66)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addComponent(btnLogn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,11 +158,11 @@ jPanel1Layout.setHorizontalGroup(
     getContentPane().setLayout(layout);
     layout.setHorizontalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, Short.MAX_VALUE)
     );
 
     pack();
@@ -176,7 +173,7 @@ jPanel1Layout.setHorizontalGroup(
         conectarBanco();
         
         String email = tfLogin.getText();
-        String senha = tfSenha.getText();
+        String senha = pfSenha.getText();
         List<Usuario> Logar = jdbcTemplate.query(
                 "select * from usuario where email = ? and senha = ?",
                 new BeanPropertyRowMapper(Usuario.class), email, senha);
@@ -238,7 +235,7 @@ jPanel1Layout.setHorizontalGroup(
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbMensagem;
+    private javax.swing.JPasswordField pfSenha;
     private javax.swing.JTextField tfLogin;
-    private javax.swing.JTextField tfSenha;
     // End of variables declaration//GEN-END:variables
 }
