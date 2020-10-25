@@ -10,3 +10,8 @@ Para ver código da tela(JFrame) de login clique <span style="color:red">[aqui](
 Nessa Classe é efetuado os getter e setter de cada atributo do usuario, como nome, email, senha, id e telefone.
 
 Para ver o código da Classe Usuario clique [aqui](https://github.com/JonJonsx/Login-Continuada2/blob/main/continuada2LP/src/main/java/br/com/jonatan/continuada2lp/Usuario.java)
+
+## Tela Dados
+Nessa tela é usado um metodo construtor para pegar as informações do usuario que está fazendo login e mostrar em tela.
+
+Para ver o código da tela(Jframe) de dados do usuario clique [aqui](https://github.com/JonJonsx/Login-Continuada2/blob/main/continuada2LP/src/main/java/br/com/jonatan/continuada2lp/Dados.java)
